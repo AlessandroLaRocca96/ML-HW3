@@ -68,7 +68,7 @@ class AlexNet(nn.Module):
        # features = features.view(features.size(0), -1)
         if alpha is not None: 
              reverse_feature = ReverseLayerF.apply(features, alpha)
-             x = reverse_feature
+             x = reverse_feature(x)
              x = self.avgpool(x)
              x = torch.flatten(x,1)
              x = self.domain_classifier(x)
