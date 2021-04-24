@@ -62,10 +62,24 @@ class AlexNet(nn.Module):
 
 
     def forward(self, x: torch.Tensor, alpha = None) -> torch.Tensor:
+      
+     
         features = self.features
-        #features = features.view(features.size(0), -1)
+       # features = features.view(features.size(0), -1)
         if alpha is not None: 
-            print("ciao")
+             reverse_feature = ReverseLayerF.apply(features, alpha)
+             x = reverse_feature
+             x = self.avgpool(x)
+             x = torch.flatten(x,1)
+             x = self.domain_classifier(x)
+             return x
+        else: 
+            x = self.features(x)
+            x = self.avgpool(x)
+            x = torch.flatten(x, 1)
+            x = self.classifier(x)
+            return x
+            
             
         
 
