@@ -63,7 +63,7 @@ class AlexNet(nn.Module):
 
     def forward(self, x: torch.Tensor, alpha = None) -> torch.Tensor:
         features = self.features
-        features = features.view(features.size(0), -1)
+        #features = features.view(features.size(0), -1)
         if alpha is not None: 
             print("ciao")
             
