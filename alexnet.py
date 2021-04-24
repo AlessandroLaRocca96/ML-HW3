@@ -80,4 +80,10 @@ def alexnet(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> A
         state_dict = load_state_dict_from_url(model_urls['alexnet'],
                                               progress=progress)
         model.load_state_dict(state_dict, strict=False)
+        
+        model.domain_classifier[1].weight.data = model.classifier[1].weight.data.clone()
+        model.domain_classifier[1].bias.data = model.classifier[1].bias.data.clone()
+        model.domain_classifier[4].weight.data = model.classifier[4].weight.data.clone()
+        model.domain_classifier[4].bias.data = model.classifier[4].bias.data.clone()
+        
     return model
