@@ -62,16 +62,10 @@ class AlexNet(nn.Module):
 
 
     def forward(self, x: torch.Tensor, alpha = None) -> torch.Tensor:
-       """ x = self.features(x)
-        x = self.avgpool(x)
-        x = torch.flatten(x, 1)
-        x = self.classifier(x)
-        return x"""
         features = self.features
         features = features.view(features.size(0), -1)
-        
         if alpha is not None: 
-           print("ciao")
+            print("ciao")
             
         
 
